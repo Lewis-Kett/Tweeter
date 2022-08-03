@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react'
 import SideBarRow from './SideBarRow'
 
-describe('Home', () => {
+describe('SideBarRow', () => {
   it('renders a SideBarRow', () => {
     render(<SideBarRow />)
 
