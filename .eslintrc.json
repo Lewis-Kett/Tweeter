@@ -1,7 +1,19 @@
 {
     "root": true,
-    "extends": ["next/core-web-vitals"],
-    "plugins": ["testing-library"],
+    "extends": [
+      "next/core-web-vitals",
+      "eslint:recommended",
+      "plugin:import/errors",
+      "plugin:react/recommended",
+      "plugin:jsx-a11y/recommended",
+      "plugin:react-hooks/recommended",
+      "prettier"
+    ],
+    "rules": {
+      "react/prop-types": 0,
+      "react/react-in-jsx-scope": 0
+    },
+    "plugins": ["react", "import", "jsx-a11y","testing-library"],
     "overrides": [
       // Only uses Testing Library lint rules in test files
       {
@@ -11,5 +23,22 @@
         ],
         "extends": ["plugin:testing-library/react"]
       }
-    ]
+    ],
+    "parserOptions": {
+      "ecmaVersion": 2022,
+      "sourceType": "module",
+      "ecmaFeatures": {
+        "jsx": true
+      }
+    },
+    "env": {
+      "es6": true,
+      "browser": true,
+      "node": true
+    },
+    "settings": {
+      "react": {
+        "version": "detect"
+      }
+    }
   }
