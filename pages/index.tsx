@@ -1,6 +1,6 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import SideBar from '../components/SideBar'
+import { SideBar } from '../components'
 
 const Home: NextPage = () => {
   return (

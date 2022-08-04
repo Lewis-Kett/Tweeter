@@ -1,8 +1,8 @@
-import SideBar from "./SideBar";
+import { SideBar } from "./SideBar";
 
 export default {
   title: "Tweeter/SideBar",
   component: SideBar,
 };
 
-export const Primary = () => <SideBar />
+export const Primary = () => <SideBar />;
