@@ -18,14 +18,5 @@ describe("SideBarRow", () => {
     
     expect(title.textContent).toEqual("user");
   });
-  
-  it("renders a title", () => {
-    render(<SideBarRow Icon={UserIcon} title="user" />);
-
-    const title = screen.getByText("user");
-    
-    expect(title.textContent).toEqual("user");
-  });
-
 
 });
