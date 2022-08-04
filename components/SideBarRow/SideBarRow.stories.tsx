@@ -1,8 +1,9 @@
+import {HomeIcon } from "@heroicons/react/outline";
 import { SideBarRow } from "./SideBarRow";
 
 export default {
-  title: "Tweeter/SideBarRow",
+  title: "Components/SideBarRow",
   component: SideBarRow,
 };
 
-export const Primary = () => <SideBarRow />;
+export const Primary = () => <SideBarRow Icon={HomeIcon} title="Home" />;

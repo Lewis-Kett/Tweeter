@@ -2,13 +2,11 @@ import { render, screen } from "@testing-library/react";
 import { SideBar } from "./SideBar";
 
 describe("SideBar", () => {
-  it("renders a SideBar", () => {
+  it("renders a brand image", () => {
     render(<SideBar />);
 
-    const heading = screen.getByRole("heading", {
-      name: "Side bar",
-    });
+    const brandImage = screen.getByRole("img");
 
-    expect(heading).toBeInTheDocument();
+    expect(brandImage).toHaveProperty("src", "https://links.papareact.com/drq");
   });
 });

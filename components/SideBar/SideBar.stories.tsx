@@ -1,7 +1,7 @@
 import { SideBar } from "./SideBar";
 
 export default {
-  title: "Tweeter/SideBar",
+  title: "Compositions/SideBar",
   component: SideBar,
 };
 
