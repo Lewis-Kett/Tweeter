@@ -13,7 +13,9 @@ export const SideBarRow = ({ Icon, title }: SideBarRowProps) => {
     duration-100 hover:bg-gray-100"
     >
       <Icon className="h-6 w-6" data-testid="rowIcon" />
-      <p className="group-hover:text-twitter">{title}</p>
+      <p className="hidden text-base font-light group-hover:text-twitter md:inline-flex lg:text-xl">
+        {title}
+      </p>
     </div>
   );
 };
