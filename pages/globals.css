@@ -1,3 +1,17 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer utilities {
+  .tweet-box-icon {
+    height: 1.25rem;
+    width: 1.25rem;
+    cursor: pointer;
+    transition-property: transform;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
+  }
+  .tweet-box-icon:hover {
+    transform: scale(1.5);
+  }
+}
