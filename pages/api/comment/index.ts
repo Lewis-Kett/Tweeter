@@ -1,0 +1,20 @@
+import type { NextApiRequest, NextApiResponse } from "next";
+import { getComments, createComment } from "../../../utils/commentActions";
+
+export default async function (req: NextApiRequest, res: NextApiResponse) {
+  try {
+    switch (req.method) {
+      case "GET":
+        res.json(await getComments());
+        break;
+      case "POST":
+        res.json(await createComment(req.body));
+        break;
+      default:
+        res.status(400).send("No response for that method");
+    }
+  } catch (e) {
+    res.status(400).json({ e });
+    console.error(e);
+  }
+}
