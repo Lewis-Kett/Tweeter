@@ -1,5 +1,11 @@
 import mongoose from "mongoose";
 
+if (!MONGO_URI) {
+  throw new Error(
+    'Please define the MONGO_URI environment variable inside .env.local'
+  )
+}
+
 mongoose.connect(process.env.MONGO_URI, {
   useNewURLParser: true,
   useUnifiedTopology: true,
