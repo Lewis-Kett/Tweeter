@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-if (!MONGO_URI) {
+if (!process.env.MONGO_URI) {
   throw new Error(
     'Please define the MONGO_URI environment variable inside .env.local'
   )
