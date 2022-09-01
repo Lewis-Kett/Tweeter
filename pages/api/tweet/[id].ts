@@ -2,7 +2,7 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import {
   getTweet,
   updateTweet,
-  deleteTweet,
+  deleteTweetAndComments,
 } from "../../../utils/tweetActions";
 
 export default async function (req: NextApiRequest, res: NextApiResponse) {
@@ -17,7 +17,7 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
         res.json(await updateTweet(id, req.body));
         break;
       case "DELETE":
-        res.json(await deleteTweet(id));
+        res.json(await deleteTweetAndComments(id));
         break;
       default:
         res.status(400).send("No response for that method");

@@ -1,4 +1,5 @@
 import { Tweet } from "../db/models/tweet";
+import { Comment } from "../db/models/comment";
 import { connection } from "./connect";
 
 //create tweet
@@ -15,4 +16,11 @@ export const updateTweet = async (id, updatedTweet) =>
   await Tweet.findByIdAndUpdate(id, updatedTweet, { new: true });
 
 //delete tweet
-export const deleteTweet = async (id) => await Tweet.findByIdAndRemove(id);
+export const deleteTweetAndComments = async (id) => {
+  const deletedTweet = await Tweet.findByIdAndRemove(id);
+  const deletedComments = await Comment.deleteMany({ tweet: deletedTweet._id });
+  return {
+    deletedTweet,
+    deletedComments,
+  };
+};
