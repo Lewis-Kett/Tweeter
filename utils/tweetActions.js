@@ -16,7 +16,7 @@ export const updateTweet = async (id, updatedTweet) =>
   await Tweet.findByIdAndUpdate(id, updatedTweet, { new: true });
 
 //delete tweet
-export const deleteTweetAndComments = async (id) => {
+export const deleteTweetAndRelatedComments = async (id) => {
   const deletedTweet = await Tweet.findByIdAndRemove(id);
   const deletedComments = await Comment.deleteMany({ tweet: deletedTweet._id });
   return {
