@@ -1,9 +1,11 @@
-import type { NextPage } from "next";
+import type { GetServerSideProps } from "next";
 import Head from "next/head";
 import { Feed, SideBar } from "../components";
 import { Widgets } from "../components/Widgets";
+import { getTweets } from "../utils/tweetActions";
 
-const Home: NextPage = () => {
+const Home = ({ tweets }: any) => {
+
   return (
     <div className="mx-auto max-h-screen overflow-hidden lg:max-w-6xl">
       <Head>
@@ -16,7 +18,7 @@ const Home: NextPage = () => {
           <SideBar />
         </div>
         <div className="col-span-7 border-x lg:col-span-5">
-          <Feed />
+          <Feed tweets={tweets}/>
         </div>
         <div className="col-span-2 hidden lg:inline">
           <Widgets />
@@ -27,3 +29,13 @@ const Home: NextPage = () => {
 };
 
 export default Home;
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const tweets = JSON.parse(JSON.stringify(await getTweets()));
+
+  return {
+    props: {
+      tweets,
+    },
+  };
+};
