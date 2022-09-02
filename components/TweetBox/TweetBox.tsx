@@ -28,11 +28,11 @@ export const TweetBox = () => {
           />
           <div className="flex items-center">
             <div className="flex flex-1 space-x-2 text-twitter">
-              <PhotographIcon data-testid="tweet-icon" className="tweet-box-icon h-5 w-5" />
-              <SearchCircleIcon data-testid="tweet-icon" className="tweet-box-icon h-5 w-5" />
-              <EmojiHappyIcon data-testid="tweet-icon" className="tweet-box-icon h-5 w-5" />
-              <CalendarIcon data-testid="tweet-icon" className="tweet-box-icon h-5 w-5" />
-              <LocationMarkerIcon data-testid="tweet-icon" className="tweet-box-icon h-5 w-5"/>
+              <PhotographIcon data-testid="tweetBox-icon" className="tweetBox-icon h-5 w-5" />
+              <SearchCircleIcon data-testid="tweetBox-icon" className="tweetBox-icon h-5 w-5" />
+              <EmojiHappyIcon data-testid="tweetBox-icon" className="tweetBox-icon h-5 w-5" />
+              <CalendarIcon data-testid="tweetBox-icon" className="tweetBox-icon h-5 w-5" />
+              <LocationMarkerIcon data-testid="tweetBox-icon" className="tweetBox-icon h-5 w-5"/>
             </div>
             <button
               disabled={!input}

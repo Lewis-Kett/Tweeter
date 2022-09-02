@@ -1,3 +1,4 @@
+import { exampleTweet } from "../../utils/mockData/mockTweet";
 import { Feed } from "./Feed";
 
 export default {
@@ -5,4 +6,4 @@ export default {
   component: Feed,
 };
 
-export const Primary = () => <Feed />;
+export const Primary = () => <Feed tweets={[exampleTweet]}/>;

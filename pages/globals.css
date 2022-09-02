@@ -3,15 +3,11 @@
 @tailwind utilities;
 
 @layer utilities {
-  .tweet-box-icon {
-    height: 1.25rem;
-    width: 1.25rem;
-    cursor: pointer;
-    transition-property: transform;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    transition-duration: 150ms;
+  .tweetBox-icon {
+    @apply h-5 w-5 cursor-pointer transition-transform duration-150 ease-out hover:scale-150
   }
-  .tweet-box-icon:hover {
-    transform: scale(1.5);
+
+  .tweet-icon {
+    @apply flex cursor-pointer items-center space-x-3 text-gray-400
   }
 }

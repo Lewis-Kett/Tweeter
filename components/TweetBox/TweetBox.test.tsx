@@ -19,7 +19,7 @@ describe("TweetBox", () => {
   it("shoul have five icons", () => {
     render(<TweetBox />);
 
-    const tweetIcons = screen.getAllByTestId("tweet-icon");
+    const tweetIcons = screen.getAllByTestId("tweetBox-icon");
 
     expect(tweetIcons.length).toBe(5);
   });

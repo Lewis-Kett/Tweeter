@@ -1,10 +1,14 @@
 import React from "react";
 import { RefreshIcon } from "@heroicons/react/outline";
 import { TweetBox } from "../TweetBox";
+import { Tweet } from "../Tweet";
+import { TweetType } from "../../typings";
 
-interface FeedProps {}
+interface FeedProps {
+  tweets?: TweetType[];
+}
 
-export const Feed = ({}: FeedProps) => {
+export const Feed = ({ tweets }: FeedProps) => {
   return (
     <div>
       <div className="flex items-center justify-between">
@@ -18,6 +22,11 @@ export const Feed = ({}: FeedProps) => {
       </div>
       <div>
         <TweetBox />
+      </div>
+      <div>
+        {tweets && tweets.map((tweet) => (
+          <Tweet key={tweet._id} tweet={tweet}/>
+        ))}
       </div>
     </div>
   );
