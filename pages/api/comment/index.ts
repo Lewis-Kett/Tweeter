@@ -1,11 +1,21 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import { getComments, createComment } from "../../../utils/commentActions";
+import {
+  getComments,
+  createComment,
+  getCommentsForTweet,
+} from "../../../utils/commentActions";
 
 export default async function (req: NextApiRequest, res: NextApiResponse) {
+  const { tweetId } = req.query;
+
   try {
     switch (req.method) {
       case "GET":
-        res.json(await getComments());
+        if (req.query.tweetId) {
+          res.json(await getCommentsForTweet(tweetId));
+        } else {
+          res.json(await getComments());
+        }
         break;
       case "POST":
         res.json(await createComment(req.body));

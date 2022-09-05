@@ -8,6 +8,9 @@ export const createComment = async (newComment) =>
 //get all comments
 export const getComments = async () => await Comment.find({}).lean().exec();
 
+//get all comments for tweet
+export const getCommentsForTweet = async (tweetId) => await Comment.find({tweetId}).lean().exec();
+
 //get one comment
 export const getComment = async (id) =>
   await Comment.findById(id).lean().exec();

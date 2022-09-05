@@ -5,7 +5,7 @@ const commentSchema = new mongoose.Schema(
     comment: String,
     username: String,
     profileImage: String,
-    tweet: {
+    tweetId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "tweet",
       required: true

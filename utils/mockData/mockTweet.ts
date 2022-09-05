@@ -1,6 +1,6 @@
 import { TweetType } from "../../typings";
 
-export const exampleTweet: TweetType = {
+export const mockTweet: TweetType = {
     blockTweet: false,
     createdAt: "2022-09-02T10:36:03.257Z",
     image:
