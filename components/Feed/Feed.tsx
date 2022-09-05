@@ -1,14 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import { RefreshIcon } from "@heroicons/react/outline";
 import { TweetBox } from "../TweetBox";
 import { Tweet } from "../Tweet";
 import { TweetType } from "../../typings";
+import { fetchTweets } from "../../utils/fetchTweets";
 
 interface FeedProps {
   tweets?: TweetType[];
 }
 
-export const Feed = ({ tweets }: FeedProps) => {
+export const Feed = ({ tweets: tweetsProp }: FeedProps) => {
+  const [tweets, setTweets] = useState(tweetsProp);
+
+  const refreshTweets = async () => {
+    const newTweets: TweetType[] = await fetchTweets();
+    setTweets(newTweets);
+  };
+
   return (
     <div>
       <div className="flex items-center justify-between">
@@ -18,15 +26,15 @@ export const Feed = ({ tweets }: FeedProps) => {
           text-twitter transition-all duration-500 ease-out 
           hover:rotate-180 active:scale-125"
           data-testid="refresh"
+          onClick={refreshTweets}
         />
       </div>
       <div>
         <TweetBox />
       </div>
       <div>
-        {tweets && tweets.map((tweet) => (
-          <Tweet key={tweet._id} tweet={tweet}/>
-        ))}
+        {tweets &&
+          tweets.map((tweet) => <Tweet key={tweet._id} tweet={tweet} />)}
       </div>
     </div>
   );

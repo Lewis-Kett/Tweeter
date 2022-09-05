@@ -80,7 +80,7 @@ export const Tweet = ({ tweet }: TweetProps) => {
       {comments.length > 0 && (
         <div className="my-2 mt-5 max-h-44 space-y-5 overflow-y-scroll border-t border-gray-100 p-5">
           {comments.map((comment: CommentType) => (
-            <Comment comment={comment}/>
+            <Comment key={comment._id} comment={comment}/>
           ))}
         </div>
       )}
