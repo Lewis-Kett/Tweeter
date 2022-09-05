@@ -3,6 +3,7 @@ import Head from "next/head";
 import { Feed, SideBar } from "../components";
 import { Widgets } from "../components/Widgets";
 import { getTweets } from "../utils/tweetActions";
+import { Toaster } from "react-hot-toast"
 
 const Home = ({ tweets }: any) => {
 
@@ -12,6 +13,7 @@ const Home = ({ tweets }: any) => {
         <title>Tweeter</title>
         <link rel="icon" href="/twitter.png" />
       </Head>
+      <Toaster />
 
       <main className="grid grid-cols-9">
         <div className="col-span-2">

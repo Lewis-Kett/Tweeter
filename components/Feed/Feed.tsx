@@ -4,6 +4,7 @@ import { TweetBox } from "../TweetBox";
 import { Tweet } from "../Tweet";
 import { TweetType } from "../../typings";
 import { fetchTweets } from "../../utils/fetchTweets";
+import toast from "react-hot-toast";
 
 interface FeedProps {
   tweets?: TweetType[];
@@ -13,8 +14,14 @@ export const Feed = ({ tweets: tweetsProp }: FeedProps) => {
   const [tweets, setTweets] = useState(tweetsProp);
 
   const refreshTweets = async () => {
+    const refreshToast = toast.loading("Refreshing...");
+    
     const newTweets: TweetType[] = await fetchTweets();
     setTweets(newTweets);
+
+    toast.success("Feed updated", {
+      id: refreshToast,
+    });
   };
 
   return (
