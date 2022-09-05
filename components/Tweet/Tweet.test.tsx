@@ -45,9 +45,9 @@ describe("Tweet", () => {
       render(<Tweet tweet={mockTweet} />);
     });
 
-    const twitterHanlde = screen.getByTestId("time-ago");
+    const timePosted = screen.getByTestId("time-ago");
 
-    expect(twitterHanlde).toBeInTheDocument;
+    expect(timePosted).toBeInTheDocument;
   });
 
   it("renders the tweet image", async () => {

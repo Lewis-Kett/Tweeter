@@ -1,9 +1,9 @@
 import { Tweet } from "./Tweet";
-import { exampleTweet } from "../../utils/mockData/mockTweet"
+import { mockTweet } from "../../utils/mockData"
 
 export default {
   title: "Components/Tweet",
   component: Tweet,
 };
 
-export const Primary = () => <Tweet tweet={exampleTweet}/>;
+export const Primary = () => <Tweet tweet={mockTweet}/>;
