@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { Dispatch, SetStateAction, useRef, useState } from "react";
 import {
   SearchCircleIcon,
   EmojiHappyIcon,
@@ -6,9 +6,62 @@ import {
   LocationMarkerIcon,
   PhotographIcon,
 } from "@heroicons/react/outline";
+import { TweetBody, TweetType } from "../../typings";
+import { fetchTweets, postTweet } from "../../utils/client";
+import { toast } from "react-hot-toast";
 
-export const TweetBox = () => {
-  const [input, setInput] = useState("");
+interface TweetBoxProps {
+  setTweets: Dispatch<SetStateAction<TweetType[] | undefined>>;
+}
+
+export const TweetBox = ({ setTweets }: TweetBoxProps) => {
+  const [input, setInput] = useState<string>("");
+  const [image, setImage] = useState<string>("");
+
+  const imageInputRef = useRef<HTMLInputElement>(null);
+
+  const [imageBoxOpen, setImageBoxOpen] = useState<boolean>(false);
+
+  const addimageToTweet = (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
+    e.preventDefault();
+
+    if (!imageInputRef.current?.value) return;
+
+    setImage(imageInputRef.current.value);
+    imageInputRef.current.value = "";
+    setImageBoxOpen(false);
+  };
+
+  const handleSubmit = async (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
+    e.preventDefault();
+
+    const tweetBody: TweetBody = {
+      text: input,
+      username: "Test",
+      profileImage:
+        "https://st3.depositphotos.com/6672868/13701/v/600/depositphotos_137014128-stock-illustration-user-profile-icon.jpg",
+      image: image || "",
+    };
+
+    const result = await postTweet(tweetBody);
+
+    const newTweets = await fetchTweets();
+    setTweets(newTweets);
+
+    toast("Tweet Posted", {
+      icon: "🚀",
+    });
+
+    setInput("");
+    setImage("");
+    setImageBoxOpen(false);
+
+    return result;
+  };
 
   return (
     <div className="flex space-x-2 p-5">
@@ -28,19 +81,61 @@ export const TweetBox = () => {
           />
           <div className="flex items-center">
             <div className="flex flex-1 space-x-2 text-twitter">
-              <PhotographIcon data-testid="tweetBox-icon" className="tweetBox-icon h-5 w-5" />
-              <SearchCircleIcon data-testid="tweetBox-icon" className="tweetBox-icon h-5 w-5" />
-              <EmojiHappyIcon data-testid="tweetBox-icon" className="tweetBox-icon h-5 w-5" />
-              <CalendarIcon data-testid="tweetBox-icon" className="tweetBox-icon h-5 w-5" />
-              <LocationMarkerIcon data-testid="tweetBox-icon" className="tweetBox-icon h-5 w-5"/>
+              <PhotographIcon
+                data-testid="tweetBox-icon"
+                className="tweetBox-icon h-5 w-5"
+                onClick={() => setImageBoxOpen(!imageBoxOpen)}
+              />
+              <SearchCircleIcon
+                data-testid="tweetBox-icon"
+                className="tweetBox-icon h-5 w-5"
+              />
+              <EmojiHappyIcon
+                data-testid="tweetBox-icon"
+                className="tweetBox-icon h-5 w-5"
+              />
+              <CalendarIcon
+                data-testid="tweetBox-icon"
+                className="tweetBox-icon h-5 w-5"
+              />
+              <LocationMarkerIcon
+                data-testid="tweetBox-icon"
+                className="tweetBox-icon h-5 w-5"
+              />
             </div>
             <button
+              onClick={handleSubmit}
               disabled={!input}
               className="rounded-full bg-twitter px-5 py-2 font-bold text-white disabled:opacity-40"
             >
               Tweet
             </button>
           </div>
+          {imageBoxOpen && (
+            <form className="flx mt-5 rounded-lg bg-twitter/80 py-2 px-4">
+              <input
+                ref={imageInputRef}
+                className="flex-1 bg-transparent p-2 text-white outline-none placeholder:text-white"
+                type="text"
+                placeholder="Enter Image URL..."
+              />
+              <button
+                type="submit"
+                onClick={addimageToTweet}
+                className="font-bold text-white"
+              >
+                Add image
+              </button>
+            </form>
+          )}
+
+          {image && (
+            <img
+              className="mt-10 h-40 w-full rounded-xl object-contain shadow-lg"
+              src={image}
+              alt="tweet-image"
+            />
+          )}
         </form>
       </div>
     </div>
