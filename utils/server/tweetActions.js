@@ -6,7 +6,7 @@ import { connection } from "../connect";
 export const createTweet = async (newTweet) => await TweetModel.create(newTweet);
 
 //get all tweets
-export const getTweets = async () => await TweetModel.find({}).lean().exec();
+export const getTweets = async () => await TweetModel.find({}).sort({createdAt: -1}).lean().exec();
 
 //get one tweet
 export const getTweet = async (id) => await TweetModel.findById(id).lean().exec();
