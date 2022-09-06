@@ -3,10 +3,9 @@ import Head from "next/head";
 import { Feed, SideBar } from "../components";
 import { Widgets } from "../components/Widgets";
 import { getTweets } from "../utils/server";
-import { Toaster } from "react-hot-toast"
+import { Toaster } from "react-hot-toast";
 
 const Home = ({ tweets }: any) => {
-
   return (
     <div className="mx-auto max-h-screen overflow-hidden lg:max-w-6xl">
       <Head>
@@ -19,8 +18,8 @@ const Home = ({ tweets }: any) => {
         <div className="col-span-2">
           <SideBar />
         </div>
-        <div className="col-span-7 border-x lg:col-span-5">
-          <Feed tweets={tweets}/>
+        <div className="col-span-7 max-h-screen overflow-scroll scrollbar-hide border-x lg:col-span-5">
+          <Feed tweets={tweets} />
         </div>
         <div className="col-span-2 hidden lg:inline">
           <Widgets />
