@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import { getTweets, createTweet } from "../../../utils/tweetActions";
+import { getTweets, createTweet } from "../../../utils/server";
 
 export default async function (req: NextApiRequest, res: NextApiResponse) {
   try {

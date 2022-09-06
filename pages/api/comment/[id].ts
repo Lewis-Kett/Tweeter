@@ -3,7 +3,7 @@ import {
   getComment,
   updateComment,
   deleteComment,
-} from "../../../utils/commentActions";
+} from "../../../utils/server";
 
 export default async function (req: NextApiRequest, res: NextApiResponse) {
   const id = req.query.id;

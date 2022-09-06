@@ -7,7 +7,7 @@ import {
   SwitchHorizontalIcon,
   UploadIcon,
 } from "@heroicons/react/outline";
-import { fetchComments } from "../../utils/fetchComments";
+import { fetchComments } from "../../utils/client";
 import { Comment } from "../Comment";
 
 interface TweetProps {

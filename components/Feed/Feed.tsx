@@ -3,7 +3,7 @@ import { RefreshIcon } from "@heroicons/react/outline";
 import { TweetBox } from "../TweetBox";
 import { Tweet } from "../Tweet";
 import { TweetType } from "../../typings";
-import { fetchTweets } from "../../utils/fetchTweets";
+import { fetchTweets } from "../../utils/client/fetchTweets";
 import toast from "react-hot-toast";
 
 interface FeedProps {
@@ -15,7 +15,7 @@ export const Feed = ({ tweets: tweetsProp }: FeedProps) => {
 
   const refreshTweets = async () => {
     const refreshToast = toast.loading("Refreshing...");
-    
+
     const newTweets: TweetType[] = await fetchTweets();
     setTweets(newTweets);
 

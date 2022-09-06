@@ -2,7 +2,7 @@ import type { GetServerSideProps } from "next";
 import Head from "next/head";
 import { Feed, SideBar } from "../components";
 import { Widgets } from "../components/Widgets";
-import { getTweets } from "../utils/tweetActions";
+import { getTweets } from "../utils/server";
 import { Toaster } from "react-hot-toast"
 
 const Home = ({ tweets }: any) => {

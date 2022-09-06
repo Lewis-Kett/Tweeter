@@ -1,9 +1,9 @@
 import { render, screen, act } from "@testing-library/react";
 import { Tweet } from "./Tweet";
 import { mockComment, mockTweet } from "../../utils/mockData";
-import { fetchComments } from "../../utils/fetchComments";
+import { fetchComments } from "../../utils/client";
 
-jest.mock("../../utils/fetchComments");
+jest.mock("../../utils/client/fetchComments");
 
 beforeEach(() => {
   (fetchComments as jest.Mock).mockResolvedValue(mockComment);

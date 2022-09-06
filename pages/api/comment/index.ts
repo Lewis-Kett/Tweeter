@@ -3,7 +3,7 @@ import {
   getComments,
   createComment,
   getCommentsForTweet,
-} from "../../../utils/commentActions";
+} from "../../../utils/server";
 
 export default async function (req: NextApiRequest, res: NextApiResponse) {
   const { tweetId } = req.query;

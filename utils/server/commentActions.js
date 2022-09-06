@@ -1,5 +1,5 @@
 import { Comment } from "../db/models/comment";
-import { connection } from "./connect";
+import { connection } from "../connect";
 
 //create comment
 export const createComment = async (newComment) =>

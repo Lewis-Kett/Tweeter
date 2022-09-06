@@ -1,5 +1,5 @@
 import { Comment } from "./Comment";
-import { mockComment } from "../../utils/mockData/mockComment";
+import { mockComment } from "../../utils/mockData";
 
 export default {
   title: "Components/Comment",
