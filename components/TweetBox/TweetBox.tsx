@@ -9,6 +9,7 @@ import {
 import { TweetBody, TweetType } from "../../typings";
 import { fetchTweets, postTweet } from "../../utils/client";
 import { toast } from "react-hot-toast";
+import { ImageBox } from "../ImageBox";
 
 interface TweetBoxProps {
   setTweets: Dispatch<SetStateAction<TweetType[] | undefined>>;
@@ -111,31 +112,12 @@ export const TweetBox = ({ setTweets }: TweetBoxProps) => {
               Tweet
             </button>
           </div>
-          {imageBoxOpen && (
-            <form className="flx mt-5 rounded-lg bg-twitter/80 py-2 px-4">
-              <input
-                ref={imageInputRef}
-                className="flex-1 bg-transparent p-2 text-white outline-none placeholder:text-white"
-                type="text"
-                placeholder="Enter Image URL..."
-              />
-              <button
-                type="submit"
-                onClick={addimageToTweet}
-                className="font-bold text-white"
-              >
-                Add image
-              </button>
-            </form>
-          )}
-
-          {image && (
-            <img
-              className="mt-10 h-40 w-full rounded-xl object-contain shadow-lg"
-              src={image}
-              alt="tweet-image"
-            />
-          )}
+          <ImageBox
+            imageRef={imageInputRef}
+            handleAddImage={addimageToTweet}
+            showImage={image}
+            toggleImageBox={imageBoxOpen}
+          />
         </form>
       </div>
     </div>
