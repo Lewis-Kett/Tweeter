@@ -1,27 +1,37 @@
-# Next.js + Tailwind CSS Example
+# Tweeter
 
-This example shows how to use [Tailwind CSS](https://tailwindcss.com/) [(v3.0)](https://tailwindcss.com/blog/tailwindcss-v3) with Next.js. It follows the steps outlined in the official [Tailwind docs](https://tailwindcss.com/docs/guides/nextjs).
+A fun side-project inspired by Sonny Sangha's twitter clone.
 
-## Deploy your own
+Scaffolded from the Next-js & Tailwind CSS boilerplate project, I've used MongoDb and Mongoose for the back-end to create a REST API for both Tweets and Comments with CRUD functionality. 
 
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example) or preview live with [StackBlitz](https://stackblitz.com/github/vercel/next.js/tree/canary/examples/with-tailwindcss)
+For the front-end I've used React & Tailwind CSS with the addition of Storybook to develop and test front-end components in isolation.
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/next.js/tree/canary/examples/with-tailwindcss&project-name=with-tailwindcss&repository-name=with-tailwindcss)
+A TDD methodology was used during front-end component creation with unit tests for all major functionality.
 
 ## How to use
 
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init), [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/), or [pnpm](https://pnpm.io) to bootstrap the example:
+Clone the project and `yarn install` to install the dependencies.
 
-```bash
-npx create-next-app --example with-tailwindcss with-tailwindcss-app
-```
+To get the DB running locally I used docker to create a local mongoDB. You can replicate my setup with:
+` docker run --name <db name here> -dit -p 27017:27017 --rm mongo:latest`
 
-```bash
-yarn create next-app --example with-tailwindcss with-tailwindcss-app
-```
+Latest version at time of writing is 6.0
 
-```bash
-pnpm create next-app --example with-tailwindcss with-tailwindcss-app
-```
+Create a `.env.local` file in the project root and add an environment variable `MONGO_URI="mongodb://localhost:27017/<your db name here>"`
 
-Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
+Start the NextJs dev server with `yarn start`
+
+Start storybook with `yarn storybook`
+
+Run the test suite with `yarn test`
+
+## Future improvements
+- Change out all <img /> tags to use Next's <Image> component
+- Expose update and delete functionality for tweets and comments on the front-end (API exsits)
+- Deploy via Vercel and MongoDB Atlas
+- Add some more plugins to Storybook
+- Add server / API tests
+- Add Cypress E2E tests
+
+## Other Comments
+I decided aginst using Sanity CMS like Sonny, nothing wrong with Sanity just wanted to work with Mongo on this project. I also decided against implementing Auth, as I didn't want to put any more steps between someone getting the project working locally and using the functionality of the app. When I deploy the project, I will implement Auth to stop bot's or people filling up the free tier of Atlas too quickly.
