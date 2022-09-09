@@ -2,7 +2,7 @@ import { Tweet } from "./Tweet";
 import { mockTweet } from "../../utils/mockData"
 
 export default {
-  title: "Components/Tweet",
+  title: "Compositions/Tweet",
   component: Tweet,
 };
 
