@@ -6,3 +6,5 @@ export { TweetBox } from "./TweetBox";
 export { Comment } from "./Comment";
 export { Tweet } from "./Tweet";
 export { Widgets } from "./Widgets";
+export { ImageBox } from "./ImageBox";
+export { CommentBox } from "./CommentBox";
