@@ -2,6 +2,7 @@ import { render, screen, act } from "@testing-library/react";
 import { Tweet } from "./Tweet";
 import { mockComment, mockTweet } from "../../utils/mockData";
 import { fetchComments } from "../../utils/client";
+import { axe } from "jest-axe";
 
 jest.mock("../../utils/client/fetchComments");
 
@@ -68,5 +69,17 @@ describe("Tweet", () => {
     const tweetImage = screen.getAllByTestId("tweet-controls");
 
     expect(tweetImage.length).toBe(4);
+  });
+
+  it("should not have any voilations", async () => {
+    await act(async () => {
+      render(<Tweet tweet={mockTweet} />);
+    });
+
+    const container = screen.getByTestId("container");
+    
+    const results = await axe(container);
+
+    expect(results).toHaveNoViolations();
   });
 });

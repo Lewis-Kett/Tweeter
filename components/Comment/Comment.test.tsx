@@ -1,6 +1,7 @@
 import { render, screen, act } from "@testing-library/react";
 import { Comment } from "./Comment";
 import { mockComment } from "../../utils/mockData";
+import { axe } from "jest-axe";
 
 describe("Comment", () => {
   it("renders a profile image", () => {
@@ -41,5 +42,13 @@ describe("Comment", () => {
     const text = screen.getByText("This is a test comment");
 
     expect(text).toBeInTheDocument;
+  });
+
+  it("should have no A11Y voilations", async () => {
+    const { container } = render(<Comment comment={mockComment} />);
+
+    const results = await axe(container);
+
+    expect(results).toHaveNoViolations();
   });
 });

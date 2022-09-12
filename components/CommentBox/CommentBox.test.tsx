@@ -1,13 +1,9 @@
-import {
-  getAllByPlaceholderText,
-  getByPlaceholderText,
-  render,
-  screen,
-} from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { axe } from "jest-axe";
 import { CommentBox } from "./CommentBox";
 
-const handleSubmit = jest.fn(e => e.preventDefault());
+const handleSubmit = jest.fn((e) => e.preventDefault());
 const onChange = jest.fn();
 
 describe("CommentBox", () => {
@@ -45,15 +41,25 @@ describe("CommentBox", () => {
 
   it("should disable the button when there is no value", () => {
     render(
-      <CommentBox
-        handleSubmit={handleSubmit}
-        onChange={onChange}
-        value=""
-      />
+      <CommentBox handleSubmit={handleSubmit} onChange={onChange} value="" />
     );
 
     const sumbitButton = screen.getByText("Post");
 
     expect(sumbitButton).toBeDisabled();
+  });
+
+  it("Should not have any voilations", async () => {
+    const { container } = render(
+      <CommentBox
+        handleSubmit={handleSubmit}
+        onChange={onChange}
+        value="Comment"
+      />
+    );
+
+    const results = await axe(container);
+
+    expect(results).toHaveNoViolations();
   });
 });

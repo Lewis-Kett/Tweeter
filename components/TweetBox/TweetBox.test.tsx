@@ -1,10 +1,13 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { axe } from "jest-axe";
 import { TweetBox } from "./TweetBox";
+
+const setTweets = jest.fn();
 
 describe("TweetBox", () => {
   it("renders an search input", () => {
-    render(<TweetBox />);
+    render(<TweetBox setTweets={setTweets} />);
 
     const placeholderProfileImg = screen.getByAltText(
       "placeholder profile image"
@@ -17,7 +20,7 @@ describe("TweetBox", () => {
   });
 
   it("shoul have five icons", () => {
-    render(<TweetBox />);
+    render(<TweetBox setTweets={setTweets} />);
 
     const tweetIcons = screen.getAllByTestId("tweetBox-icon");
 
@@ -25,7 +28,7 @@ describe("TweetBox", () => {
   });
 
   it("should disable button when no value is entered", () => {
-    render(<TweetBox />);
+    render(<TweetBox setTweets={setTweets} />);
 
     const tweetButton = screen.getByText("Tweet");
 
@@ -35,7 +38,7 @@ describe("TweetBox", () => {
   it("should enable the button when value is entered", async () => {
     userEvent.setup();
 
-    render(<TweetBox />);
+    render(<TweetBox setTweets={setTweets} />);
 
     const tweetBox = screen.getByPlaceholderText("What's Happening?");
 
@@ -43,5 +46,13 @@ describe("TweetBox", () => {
 
     const tweetButton = screen.getByText("Tweet");
     expect(tweetButton).not.toHaveAttribute("disabled");
+  });
+
+  it("should not have any voilations", async () => {
+    const {container} = render(<TweetBox setTweets={setTweets} />);
+
+    const results = await axe(container);
+
+    expect(results).toHaveNoViolations();
   });
 });

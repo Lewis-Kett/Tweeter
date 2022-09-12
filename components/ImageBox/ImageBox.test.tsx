@@ -1,5 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { axe } from "jest-axe";
 import { ImageBox } from "./ImageBox";
 
 const addImage = jest.fn((e) => e.preventDefault());
@@ -48,5 +49,19 @@ describe("ImageBox", () => {
     await userEvent.click(addImageButton);
 
     expect(addImage).toBeCalled();
+  });
+
+  it("should not have any voilations", async () => {
+    const { container } = render(
+      <ImageBox
+        handleAddImage={addImage}
+        showImage={exampleURl}
+        toggleImageBox={true}
+      />
+    );
+
+    const results = await axe(container);
+
+    expect(results).toHaveNoViolations();
   });
 });

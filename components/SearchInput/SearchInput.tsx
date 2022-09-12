@@ -1,4 +1,4 @@
-import React, { SVGProps } from "react";
+import React from "react";
 import { SearchIcon } from "@heroicons/react/outline";
 
 export const SearchInput = ({}) => {
